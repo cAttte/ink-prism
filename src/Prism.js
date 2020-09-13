@@ -1,5 +1,6 @@
+const fs = require("fs")
 const Prism = require("prismjs")
-module.exports = Prism
+Prism.themes = {}
 
 Prism.loadLanguage = function loadLanguage(name) {
     name = name
@@ -21,3 +22,23 @@ Prism.addLanguage = function addLanguage(name, grammar, extend) {
     if (extend) grammar = Prism.languages.extend(extend, grammar)
     Prism[name] = grammar
 }
+
+Prism.loadTheme = function loadTheme(name) {
+    const theme = require(`./themes/${name}`)
+    Prism.themes[name] = theme
+}
+
+Prism.loadAllThemes = function loadAllThemes() {
+    const files = fs.readdirSync("./themes")
+    files.forEach(file => {
+        const name = file.replace(/\.js$/, "")
+        Prism.themes[name] = require(`./themes/${file}`)
+    })
+}
+
+Prism.addTheme = function addTheme(name, theme) {
+    Prism[name] = theme
+}
+
+Prism.loadTheme("prism")
+module.exports = Prism
