@@ -38,7 +38,11 @@ async function main() {
 
     // "global" selector
     for (const rule of rules)
-        if (rule.selectors && rule.selectors.join(", ").includes(`class*="language-"`)) {
+        if (
+            rule.selectors &&
+            rule.selectors.join(", ").includes(`class*="language-"`) &&
+            !rule.selectors.join(", ").includes("selection")
+        ) {
             const background = rule.declarations.find(d =>
                 ["background", "background-color"].includes(d.property)
             )
