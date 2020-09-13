@@ -84,20 +84,15 @@ class Code extends React.Component {
         const paddingRight = p.paddingRight || p.paddingX || p.padding || 0
         const space = n => " ".repeat(n)
 
-        if (paddingTop) {
-            const firstLineWidth = getWidth(code.split("\n")[0] || "")
-            code = (space(firstLineWidth) + "\n").repeat(paddingTop) + code
-        }
-        if (paddingBottom) {
-            const lastLineWidth = getWidestLine(code.split("\n")[0] || "")
-            code = code + ("\n" + space(lastLineWidth)).repeat(paddingBottom)
-        }
-        if (paddingLeft || paddingRight) {
-            code = code
-                .split("\n")
-                .map(l => space(paddingLeft) + l + space(paddingRight))
-                .join("\n")
-        }
+        const lines = code.split("\n")
+        const firstLineWidth = getWidth(lines[0] || "")
+        const lastLineWidth = getWidestLine(lines[lines.length - 1] || "")
+        code = (space(firstLineWidth) + "\n").repeat(paddingTop) + code
+        code = code + ("\n" + space(lastLineWidth)).repeat(paddingBottom)
+        code = code
+            .split("\n")
+            .map(l => space(paddingLeft) + l + space(paddingRight))
+            .join("\n")
 
         return code
     }
