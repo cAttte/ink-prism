@@ -40,6 +40,8 @@ The language to highlight the code as.
 -   **Type:** `string`
 -   **Required**
 
+_See [`loadLanguage()`](#loadlanguage)._
+
 ##### theme
 
 The theme to highlight the code with.
@@ -68,8 +70,36 @@ This component also has **7** other properties which are not listed individually
 -   **Type:** `number`
 -   **Default:** `0`
 
+### loadLanguage()
+
+By default, only a few languages are loaded into memory; [`markup`][prism-markup], (alias: `html`, `mathml`, `svg`, `xml`, `ssml`, `atom`, `rss`), [`css`][prism-css], [`clike`][prism-clike], and [`javascript`][prism-javascript] (alias: `js`).
+
+Use this method to load [one of the built-in languages][prism-components] into memory.
+
+This method is _synchronous_. Currently, there is no way to load languages asynchronously.
+
+#### Parameters
+
+##### name
+
+The name of the language to load. It will be automatically `hyphen-case`d, so you can use `camelCase` if you want to.
+
+-   **Type:** `string`
+-   **Required**
+
+### loadAllLanguages()
+
+Load _all_ of the built-in languages into memory. Make sure you actually want to use this method, as there are _a lot_ of languages (more than 200).
+
+This method is _synchronous_. Currently, there is no way to load languages asynchronously.
+
 <!-- References -->
 
 [ink]: https://github.com/vadimdemedes/ink
 [prism]: https://github.com/PrismJS/prism
 [ink-padding]: https://github.com/vadimdemedes/ink#padding
+[prism-markup]: https://github.com/PrismJS/prism/blob/master/components/prism-markup.js
+[prism-css]: https://github.com/PrismJS/prism/blob/master/components/prism-css.js
+[prism-clike]: https://github.com/PrismJS/prism/blob/master/components/prism-clike.js
+[prism-javascript]: https://github.com/PrismJS/prism/blob/master/components/prism-javascript.js
+[prism-components]: https://github.com/PrismJS/prism/tree/master/components
