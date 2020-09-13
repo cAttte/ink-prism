@@ -49,6 +49,8 @@ The theme to highlight the code with.
 -   **Type:** `string`
 -   **Default:** `"prism"`
 
+_See [`loadTheme()`](#loadtheme)._
+
 ##### tabSize
 
 The number of spaces to replace all tab (`\t`) characters with, if any.
@@ -122,6 +124,70 @@ _See [Prism.languages.extend()][prism-extend]._
 -   **Type:** `string`
 -   **Default:** `undefined`
 
+### loadTheme()
+
+By default, only the [`prism`][self-prism] theme is loaded into memory. Use this method to load one of the [built-in themes][self-themes] into memory.
+
+This method is _synchronous_. Currently, there is no way to load themes asynchronously.
+
+#### Parameters
+
+##### name
+
+The name of the language to load.
+
+-   **Type:** `string`
+-   **Required**
+
+### loadAllThemes()
+
+Load _all_ of the built-in themes into memory. There aren't _that_ many built-in themes, so this shouldn't pose serious performance issues, though it should still not be necessary in normal circumstances.
+
+This method is _synchronous_. Currently, there is no way to load themes asynchronously.
+
+### addTheme()
+
+Create a theme with your own colors.
+
+##### name
+
+The name of the theme to add.
+
+-   **Type:** `string`
+-   **Required**
+
+##### grammar
+
+The theme data.
+
+-   **Type:** [`Theme`](#theme)
+-   **Required**
+
+### Theme
+
+Themes in `ink-prism` are defined differently from Prism themes, as you can't really use CSS in Ink.
+
+First of all, all colors must be in hex format (`#RGB`, `#RGBA`, `#RRGGBB`, or `#RRGGBBAA`). The theme must have a `background` property, defining the background color. Then, a `color` property, which will be used for all non-highlighted (default) text.
+
+Finally, a `tokens` property, mapping every token name (`comment`, `punctuation`, `function`, ...) to its color. These colors can not only be a plain string, but also an object containing the `bold` or `italic` boolean properties.
+
+Here's an example. (There are more tokens than that; they were removed for the sake of simplicity):
+
+```js
+module.exports = {
+    background: "#f5f2f0",
+    color: "#000000",
+    tokens: {
+        comment: { italic: true, color: "#708090" },
+        namespace: "#000000b3", // rgba(0, 0, 0, 0.7)
+        bold: { bold: true, color: "#000" },
+        italic: { italic: true, color: "#000" }
+    }
+}
+```
+
+_[Here][self-prism]'s the full version of the default theme, Prism. Check out the other [built-in themes][self-themes] for more examples, and feel free to make a Pull Request with any themes you want to add into this module!_
+
 <!-- References -->
 
 [ink]: https://github.com/vadimdemedes/ink
@@ -134,3 +200,5 @@ _See [Prism.languages.extend()][prism-extend]._
 [prism-components]: https://github.com/PrismJS/prism/tree/master/components
 [prism-grammar]: https://prismjs.com/docs/global.html#Grammar
 [prism-extend]: https://prismjs.com/docs/Prism.languages.html#.extend
+[self-prism]: https://github.com/cAttte/ink-prism/blob/master/src/themes/prism.js
+[self-themes]: https://github.com/cAttte/ink-prism/blob/master/src/themes
