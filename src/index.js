@@ -1,3 +1,1 @@
-const importJSX = require("import-jsx")
-
-module.exports = importJSX("./components/Code")
+module.exports.Code = require("./components/Code")
