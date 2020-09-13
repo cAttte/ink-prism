@@ -11,12 +11,6 @@ const theme = require("../themes/prism.js")
 
 class Code extends React.Component {
     render() {
-        if (!this.props.language)
-            throw new TypeError("The language prop of a Prism is required.")
-        if (typeof this.props.children !== "string")
-            throw new TypeError("The child(ren) of a Prism must be a string.")
-        if (typeof this.props.tabSize !== "number") throw new Typee()
-
         const language = this.props.language.replace(
             /([A-Z])/g,
             (_, $1) => `-${$1.toLowerCase()}`
