@@ -6,9 +6,6 @@ const Ink = require("ink")
 const PropTypes = require("prop-types")
 const Prism = require("../Prism")
 
-// ↓ TODO: make this customizable
-const theme = require("../themes/prism.js")
-
 class Code extends React.Component {
     render() {
         const language = this.props.language.replace(
@@ -18,8 +15,11 @@ class Code extends React.Component {
         const grammar = Prism.languages[language]
         if (!grammar) throw new TypeError(`Unknown language "${language}".`)
 
+        const theme = Prism.themes[this.props.theme]
+        if (!theme) throw new TypeError(`Unknown theme "${theme}".`)
+
         const tokens = Prism.tokenize(this.props.children, grammar)
-        let code = this.highlightTokens(tokens)
+        let code = this.highlightTokens(tokens, theme)
         code = code.replace(/\t/g, " ".repeat(this.props.tabSize))
         if (this.props.fill) code = this.fillCode(code)
         code = this.padCode(code)
@@ -28,7 +28,7 @@ class Code extends React.Component {
         return <Ink.Text>{code}</Ink.Text>
     }
 
-    highlightTokens(tokens) {
+    highlightTokens(tokens, theme) {
         const normalizedTokens = this.normalizeTokens(tokens)
         return normalizedTokens
             .map(token => {
@@ -105,6 +105,7 @@ class Code extends React.Component {
 
 Code.propTypes = {
     language: PropTypes.string.isRequired,
+    theme: PropTypes.string,
     children: PropTypes.string.isRequired,
     tabSize: PropTypes.number,
     fill: PropTypes.bool,
@@ -118,6 +119,7 @@ Code.propTypes = {
 }
 
 Code.defaultProps = {
+    theme: "prism",
     tabSize: 4,
     fill: true,
     paddingTop: 0,
