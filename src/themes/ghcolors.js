@@ -8,7 +8,7 @@
 
 module.exports = {
     "color": "#393a34",
-    "background": "#b3d4fc",
+    "background": "#ffffff",
     "tokens": {
         "comment": {
             "italic": true,

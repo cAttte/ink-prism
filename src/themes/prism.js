@@ -9,7 +9,7 @@
 
 module.exports = {
     "color": "#000000",
-    "background": "#b3d4fc",
+    "background": "#f5f2f0",
     "tokens": {
         "comment": "#708090",
         "prolog": "#708090",
