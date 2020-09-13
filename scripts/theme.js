@@ -99,9 +99,11 @@ async function main() {
      originalComment
          ? "\n" +
            originalComment
-               .replace(/^\n|\n$/g, "")
+               .replace(/^ ?\* ?/, "")
+               .replace(/ ?\* +?$/, "")
+               .trim()
                .split("\n")
-               .map(l => " * " + l)
+               .map(l => " * " + l.replace(/^ ?\* ?/, "").trim())
                .join("\n")
          : ""
  }
