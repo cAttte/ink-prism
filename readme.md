@@ -4,7 +4,7 @@ Syntax highlighting component for [Ink][], powered by [Prism][].
 
 -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [<&ZeroWidthSpace;Code /&ZeroWidthSpace;>](#zerowidthspacecode-zerowidthspace)
+    -   [<&ZeroWidthSpace;Code /&ZeroWidthSpace;>](#code-)
     -   [loadLanguage()](#loadlanguage)
     -   [loadAllLanguages()](#loadalllanguages)
     -   [addLanguage()](#addlanguage)
