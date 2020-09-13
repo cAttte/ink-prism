@@ -2,7 +2,9 @@ const Prism = require("prismjs")
 module.exports = Prism
 
 Prism.loadLanguage = function loadLanguage(name) {
-    name = name.replace(/([A-Z])/g, (_, $1) => `-${$1.toLowerCase()}`)
+    name = name
+        .replace(/([A-Z])/g, (_, $1) => `-${$1.toLowerCase()}`)
+        .replace(/^prism-?/, "")
     require(`prismjs/components/prism-${name}.min.js`)
 }
 
