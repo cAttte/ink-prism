@@ -1,4 +1,5 @@
 const fs = require("fs")
+const path = require("path")
 const Prism = require("prismjs")
 Prism.themes = {}
 
@@ -29,7 +30,7 @@ Prism.loadTheme = function loadTheme(name) {
 }
 
 Prism.loadAllThemes = function loadAllThemes() {
-    const files = fs.readdirSync("./themes")
+    const files = fs.readdirSync(path.join(__dirname, "./themes"))
     files.forEach(file => {
         const name = file.replace(/\.js$/, "")
         this.themes[name] = require(`./themes/${file}`)
