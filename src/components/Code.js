@@ -25,6 +25,7 @@ class Code extends React.Component {
         let code = this.highlightTokens(tokens)
         code = code.replace(/\t/g, " ".repeat(this.props.tabSize))
         if (this.props.fill) code = this.fillCode(code)
+        code = this.padCode(code)
         code = chalk.bgHex(theme.background)(code)
 
         return <Ink.Text>{code}</Ink.Text>
@@ -77,18 +78,58 @@ class Code extends React.Component {
             })
             .join("\n")
     }
+
+    padCode(code) {
+        const p = this.props
+        const paddingTop = p.paddingTop || p.paddingY || p.padding || 0
+        const paddingBottom = p.paddingBottom || p.paddingY || p.padding || 0
+        const paddingLeft = p.paddingLeft || p.paddingX || p.padding || 0
+        const paddingRight = p.paddingRight || p.paddingX || p.padding || 0
+        const space = n => " ".repeat(n)
+
+        if (paddingTop) {
+            const firstLineWidth = getWidth(code.split("\n")[0] || "")
+            code = (space(firstLineWidth) + "\n").repeat(paddingTop) + code
+        }
+        if (paddingBottom) {
+            const lastLineWidth = getWidestLine(code.split("\n")[0] || "")
+            code = code + ("\n" + space(lastLineWidth)).repeat(paddingBottom)
+        }
+        if (paddingLeft || paddingRight) {
+            code = code
+                .split("\n")
+                .map(l => space(paddingLeft) + l + space(paddingRight))
+                .join("\n")
+        }
+
+        return code
+    }
 }
 
 Code.propTypes = {
     language: PropTypes.string.isRequired,
     children: PropTypes.string.isRequired,
     tabSize: PropTypes.number,
-    fill: PropTypes.bool
+    fill: PropTypes.bool,
+    paddingTop: PropTypes.number,
+    paddingBottom: PropTypes.number,
+    paddingLeft: PropTypes.number,
+    paddingRight: PropTypes.number,
+    paddingX: PropTypes.number,
+    paddingY: PropTypes.number,
+    padding: PropTypes.number
 }
 
 Code.defaultProps = {
     tabSize: 4,
-    fill: true
+    fill: true,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingX: 0,
+    paddingY: 0,
+    padding: 0
 }
 
 module.exports = Code
