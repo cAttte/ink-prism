@@ -61,7 +61,15 @@ Whether to "fill" remaning space after every newline, as to make the background 
 -   **Type:** `boolean`
 -   **Default:** `true`
 
+##### padding
+
+This component also has **7** other properties which are not listed individually; `paddingTop`, `paddingBottom`, `paddingLeft`, `paddingRight`, `paddingX`, `paddingY` and `padding`. You can either guess what these do, or check out [Ink's Box's padding props][ink-padding].
+
+-   **Type:** `number`
+-   **Default:** `0`
+
 <!-- References -->
 
 [ink]: https://github.com/vadimdemedes/ink
 [prism]: https://github.com/PrismJS/prism
+[ink-padding]: https://github.com/vadimdemedes/ink#padding
