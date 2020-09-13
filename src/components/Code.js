@@ -16,7 +16,7 @@ class Code extends React.Component {
         if (!grammar) throw new TypeError(`Unknown language "${language}".`)
 
         const theme = Prism.themes[this.props.theme]
-        if (!theme) throw new TypeError(`Unknown theme "${theme}".`)
+        if (!theme) throw new TypeError(`Unknown theme "${this.props.theme}".`)
 
         const tokens = Prism.tokenize(this.props.children, grammar)
         let code = this.highlightTokens(tokens, theme)
