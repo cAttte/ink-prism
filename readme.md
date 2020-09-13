@@ -35,7 +35,7 @@ The only component; its content's syntax will be highlighted.
 
 ##### language
 
-The language to highlight the code as.
+The language to highlight the code as. It will be automatically `hyphen-case`d, so you can use `camelCase` if you want to.
 
 -   **Type:** `string`
 -   **Required**

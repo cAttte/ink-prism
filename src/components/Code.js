@@ -17,11 +17,14 @@ class Code extends React.Component {
             throw new TypeError("The child(ren) of a Prism must be a string.")
         if (typeof this.props.tabSize !== "number") throw new Typee()
 
-        const rawCode = this.props.children
-        const grammar = Prism.languages[this.props.language]
-        if (!grammar) throw new TypeError(`Unknown language "${this.props.language}".`)
+        const language = this.props.language.replace(
+            /([A-Z])/g,
+            (_, $1) => `-${$1.toLowerCase()}`
+        )
+        const grammar = Prism.languages[language]
+        if (!grammar) throw new TypeError(`Unknown language "${language}".`)
 
-        const tokens = Prism.tokenize(rawCode, grammar)
+        const tokens = Prism.tokenize(this.props.children, grammar)
         let code = this.highlightTokens(tokens)
         code = code.replace(/\t/g, " ".repeat(this.props.tabSize))
         if (this.props.fill) code = this.fillCode(code)
