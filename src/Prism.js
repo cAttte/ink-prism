@@ -16,3 +16,8 @@ Prism.loadAllLanguages = function loadAllLanguages() {
         } catch {}
     })
 }
+
+Prism.addLanguage = function addLanguage(name, grammar, extend) {
+    if (extend) grammar = Prism.languages.extend(extend, grammar)
+    Prism[name] = grammar
+}
