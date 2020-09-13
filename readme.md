@@ -11,23 +11,25 @@ Syntax highlighting component for [Ink][], powered by [Prism][].
 ```js
 const React = require("react")
 const Ink = require("ink")
-const Prism = require("ink-prism")
+const { Code } = require("ink-prism")
 
 const code = `
 const React = require("react")
 const Ink = require("ink")
-const Prism = require("ink-prism")
+const { Code } = require("ink-prism")
 
 Ink.render(
-    <Prism language="js">
+    <Code language="js">
         console.log("Syntax highlighting!")
-    </Prism>
+    </Code>
 )`
 
-Ink.render(<Prism language="js">{code}</Prism>)
+Ink.render(<Code language="js">{code}</Code>)
 ```
 
-### <Prism />
+### <&ZeroWidthSpace;Code /&ZeroWidthSpace;>
+
+The only component; its content's syntax will be highlighted.
 
 #### Props
 
