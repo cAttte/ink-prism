@@ -19,25 +19,25 @@ Prism.loadAllLanguages = function loadAllLanguages() {
 }
 
 Prism.addLanguage = function addLanguage(name, grammar, extend) {
-    if (extend) grammar = Prism.languages.extend(extend, grammar)
-    Prism[name] = grammar
+    if (extend) grammar = this.languages.extend(extend, grammar)
+    this[name] = grammar
 }
 
 Prism.loadTheme = function loadTheme(name) {
     const theme = require(`./themes/${name}`)
-    Prism.themes[name] = theme
+    this.themes[name] = theme
 }
 
 Prism.loadAllThemes = function loadAllThemes() {
     const files = fs.readdirSync("./themes")
     files.forEach(file => {
         const name = file.replace(/\.js$/, "")
-        Prism.themes[name] = require(`./themes/${file}`)
+        this.themes[name] = require(`./themes/${file}`)
     })
 }
 
 Prism.addTheme = function addTheme(name, theme) {
-    Prism[name] = theme
+    this[name] = theme
 }
 
 Prism.loadTheme("prism")
