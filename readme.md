@@ -93,6 +93,35 @@ Load _all_ of the built-in languages into memory. Make sure you actually want to
 
 This method is _synchronous_. Currently, there is no way to load languages asynchronously.
 
+### addLanguage()
+
+Create a language with your own grammar definitions.
+
+#### Parameters
+
+##### name
+
+The name of the language to add.
+
+-   **Type:** `string`
+-   **Required**
+
+##### grammar
+
+The grammar object of the language.
+
+-   **Type:** [`Prism.Grammar`][prism-grammar]
+-   **Required**
+
+##### extend
+
+The name of an existing language to extend.
+
+_See [Prism.languages.extend()][prism-extend]._
+
+-   **Type:** `string`
+-   **Default:** `undefined`
+
 <!-- References -->
 
 [ink]: https://github.com/vadimdemedes/ink
@@ -103,3 +132,5 @@ This method is _synchronous_. Currently, there is no way to load languages async
 [prism-clike]: https://github.com/PrismJS/prism/blob/master/components/prism-clike.js
 [prism-javascript]: https://github.com/PrismJS/prism/blob/master/components/prism-javascript.js
 [prism-components]: https://github.com/PrismJS/prism/tree/master/components
+[prism-grammar]: https://prismjs.com/docs/global.html#Grammar
+[prism-extend]: https://prismjs.com/docs/Prism.languages.html#.extend
