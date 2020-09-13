@@ -2,6 +2,17 @@
 
 Syntax highlighting component for [Ink][], powered by [Prism][].
 
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [<&ZeroWidthSpace;Code /&ZeroWidthSpace;>](#zerowidthspacecode-zerowidthspace)
+    -   [loadLanguage()](#loadlanguage)
+    -   [loadAllLanguages()](#loadalllanguages)
+    -   [addLanguage()](#addlanguage)
+    -   [loadTheme()](#loadtheme)
+    -   [loadAllThemes()](#loadallthemes)
+    -   [addTheme()](#addtheme)
+    -   [Theme](#theme-1)
+
 ## Installation
 
     $ npm i ink-prism
